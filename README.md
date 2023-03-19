@@ -1,24 +1,67 @@
-# README
+### users_tabel
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+|Column          |Type  |Options                      |
+|----------------|------|-----------------------------|
+|family_name     |string|null: false                  |
+|first_name      |string|null: false                  |
+|family_name_kana|string|null: false                  |
+|first_name_kana |string|null: false                  |
+|nickname        |string|null: false                  |
+|email           |string|null: false ,unique_key: true|
+|password        |string|null: false                  |
+|birth_day       |date  |null: false                  |
 
-Things you may want to cover:
+### Association
+has_many :purchaser_record
+has_many :items
 
-* Ruby version
+### items_tabel
 
-* System dependencies
+|Column          |Type     |Options                      |
+|----------------|---------|-----------------------------|
+|prodauct_name   |string   |null: false                  |
+|category        |string   |null: false                  |
+|price           |integer  |null: false                  |
+|explanation     |text     |null: false                  |
+|condition       |string   |null: false                  |
+|delivery_chage  |integer  |null: false                  |
+|delivery_day    |DATETIME |null: false                  |
+|Region_of_origin|string   |null: false                  |
 
-* Configuration
 
-* Database creation
+### Association
 
-* Database initialization
+has_one :purchaser_record
+belongs_to :user 
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+### purchaser_record_tabel
 
-* Deployment instructions
+|Column       |Type      |Options                       |
+|-------------|----------|------------------------------|
+|user         |references|null: false, foreign_key: true|
+|purchase date|DATETIME  |null: false                   |
 
-* ...
+### Association
+
+has_one :delivery_address
+belongs_to :items 
+
+
+
+### delivery_address
+
+|Column           |Type      |Options       |
+|-----------------|----------|--------------|
+|post_code        |INTEGER(7)|null: false   |
+|prefectures      |string    |null: false   |
+|cities           |string    |null: false   |
+|prefectures_kana |string    |null: false   |
+|city_kana        |string    |null: false   |
+|adress           |text      |null: false   |
+|buildding        |text      |null: false   |
+|tel              |text      |null: false   |
+
+
+### Association
+belongs_to :purchaser_record
