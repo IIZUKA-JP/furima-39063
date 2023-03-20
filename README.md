@@ -27,7 +27,7 @@ has_many :items
 |condition_id        |integer   |null: false                    |
 |delivery_charge_id  |integer   |null: false                    |
 |delivery_day_id     |integer   |null: false                    |
-|prefectures         |integer   |null: false                    |
+|prefecture_id       |integer   |null: false                    |
 |user                |references|null: false, foreign_key: true |
 
 ### Association
@@ -41,6 +41,7 @@ belongs_to :user
 |Column       |Type      |Options                       |
 |-------------|----------|------------------------------|
 |user         |references|null: false, foreign_key: true|
+|item         |references|null: false, foreign_key: true|
 |purchase date|DATETIME  |null: false                   |
 
 ### Association
@@ -56,7 +57,7 @@ belongs_to :user
 |-----------------|----------|-------------------------------|
 |purchaser_record |references|null: false, foreign_key: true |
 |post_code        |string    |null: false                    |
-|prefectures      |integer   |null: false                    |
+|prefecture_id    |integer   |null: false                    |
 |city             |string    |null: false                    |
 |address          |string    |null: false                    |
 |building         |string    |                               |
