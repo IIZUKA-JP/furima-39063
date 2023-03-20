@@ -17,22 +17,22 @@ has_many :items
 
 ### items_table
 
-|Column             |Type     |Options                      |
-|-------------------|---------|-----------------------------|
-|product_name       |string   |null: false                  |
-|category_id        |integer  |null: false                  |
-|price              |integer  |null: false                  |
-|explanation        |text     |null: false                  |
-|condition_id       |integer  |null: false                  |
-|delivery_charge_id |integer  |null: false                  |
-|delivery_day_id    |integer  |null: false                  |
-|Region_of_origin_id|integer  |null: false                  |
+|Column              |Type     |Options                      |
+|--------------------|---------|-----------------------------|
+|product_name        |string   |null: false                  |
+|category_id         |integer  |null: false                  |
+|price               |integer  |null: false                  |
+|explanation         |text     |null: false                  |
+|condition_id        |integer  |null: false                  |
+|delivery_charge_id  |integer  |null: false                  |
+|delivery_day_id     |integer  |null: false                  |
+|Region_of_origin_id |integer  |null: false                  |
 
 
 ### Association
 
 has_one :purchaser_record
-belongs_to :user 
+belongs_to :users
 
 
 ### purchaser_record_table
