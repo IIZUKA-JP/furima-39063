@@ -42,7 +42,6 @@ belongs_to :user
 |-------------|----------|------------------------------|
 |user         |references|null: false, foreign_key: true|
 |item         |references|null: false, foreign_key: true|
-|purchase date|DATETIME  |null: false                   |
 
 ### Association
 
