@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :item do
-
+    image {Faker::Lorem.sentence}
     product_name  {Faker::Name.initials}
     category_id     {Faker::Number.between(from: 2, to: 11)}
     price  {Faker::Number.between(from: 300, to: 9_999_999)}

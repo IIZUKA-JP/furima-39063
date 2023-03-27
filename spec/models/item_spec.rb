@@ -14,7 +14,6 @@ RSpec.describe Item, type: :model do
         end
       end
     
-
     context '新規登録できない場合'do
       it 'product_nameが空では登録できない' do
         @item.product_name = ''  
@@ -55,6 +54,11 @@ RSpec.describe Item, type: :model do
         @item.prefecture_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include "Prefecture is not a number"
+      end
+      it 'imageが空では登録できない' do
+        @item.image = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include "Image can't be blank"
       end
       it 'condition_idが1以外でないと登録できない' do
         @item.condition_id = '1'
