@@ -45,11 +45,6 @@ RSpec.describe PurchaserAddress, type: :model do
         @purchaser_address.valid?
         expect(@purchaser_address.errors.full_messages).to include "Prefecture is not a number"
       end
-      it 'tokenが空では購入できない' do
-        @purchaser_address.token = ''
-        @purchaser_address.valid?
-        expect(@purchaser_address.errors.full_messages).to include "Token can't be blank"
-      end
       it 'post_codeがハイフン無しでは購入できない' do
         @purchaser_address.post_code = '111111'
         @purchaser_address.valid?
@@ -60,11 +55,6 @@ RSpec.describe PurchaserAddress, type: :model do
         @purchaser_address.valid?
         expect(@purchaser_address.errors.full_messages).to include "Prefecture must be other than 1"
       end
-      it 'telは、10桁以上11桁以内の半角数値でないと購入できない' do
-        @purchaser_address.tel = '123456789'
-        @purchaser_address.valid?
-        expect(@purchaser_address.errors.full_messages).to include "Tel is too short (minimum is 10 characters)"
-      end
       it 'telは半角数値でないと購入できない' do
         @purchaser_address.tel = 'ffffffffff'
         @purchaser_address.valid?
@@ -73,8 +63,33 @@ RSpec.describe PurchaserAddress, type: :model do
       it "tokenが空では登録できないこと" do
         @purchaser_address.token = nil
         @purchaser_address.valid?
-        expect(@purchaser_address.errors.full_messages).to include("Token can't be blank")
-      end      
+        expect(@purchaser_address.errors.full_messages).to include"Token can't be blank"
+      end
+      it "telが空では登録できないこと" do
+        @purchaser_address.tel = ""
+        @purchaser_address.valid?
+        expect(@purchaser_address.errors.full_messages).to include"Tel can't be blank"
+      end
+      it "userが紐付いていないと出品できない" do
+        @purchaser_address.user_id = nil
+        @purchaser_address.valid?
+        expect(@purchaser_address.errors.full_messages).to include("User can't be blank")
+      end
+      it "itemが紐付いていないと出品できない" do
+        @purchaser_address.item_id = nil
+        @purchaser_address.valid?
+        expect(@purchaser_address.errors.full_messages).to include("Item can't be blank")
+      end
+      it 'telが9桁以下では購入できない' do
+        @purchaser_address.tel = '123456789'
+        @purchaser_address.valid?
+        expect(@purchaser_address.errors.full_messages).to include "Tel is too short (minimum is 10 characters)"
+      end
+      it 'telが12桁以上では購入できない' do
+        @purchaser_address.tel = '123456789012'
+        @purchaser_address.valid?
+        expect(@purchaser_address.errors.full_messages).to include "Tel is too long (maximum is 11 characters)"
+      end
     end
   end
 end
