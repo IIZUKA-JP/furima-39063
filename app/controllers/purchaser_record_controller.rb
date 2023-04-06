@@ -8,21 +8,15 @@ class PurchaserRecordController < ApplicationController
   end
 
   def new
-   @purchaser_record = PurchaserRecord.new
   end
 
   
   def create
     @purchaser_address = PurchaserAddress.new(purchaser_record_params)
     if @purchaser_address.valid?
-      Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
-      Payjp::Charge.create(
-        amount: @item.price,
-        card: purchaser_record_params[:token],
-        currency: 'jpy'
-      )
+      pay_item
       @purchaser_address.save
-       redirect_to root_path 
+      redirect_to root_path 
     else
       render :index
     end
@@ -43,6 +37,13 @@ class PurchaserRecordController < ApplicationController
      redirect_to root_path
     end
   end
-
+  def pay_item
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp::Charge.create(
+      amount: @item.price,
+      card: purchaser_record_params[:token],
+      currency: 'jpy'
+    )
+  end
 
 end
