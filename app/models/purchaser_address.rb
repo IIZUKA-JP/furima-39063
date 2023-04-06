@@ -12,7 +12,7 @@ class PurchaserAddress
     purchaser_record = PurchaserRecord.create(item_id: item_id, user_id: user_id)
 
     DeliveryAddress.create(
-      purchaser_record: purchaser_record, 
+      purchaser_record_id: purchaser_record.id, 
       post_code: post_code,
       prefecture_id: prefecture_id, 
       city: city, address: address, 

@@ -7,9 +7,6 @@ class PurchaserRecordController < ApplicationController
     @purchaser_address = PurchaserAddress.new
   end
 
-  def new
-  end
-
   
   def create
     @purchaser_address = PurchaserAddress.new(purchaser_record_params)
