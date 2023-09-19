@@ -65,3 +65,4 @@ belongs_to :user
 
 ### Association
 belongs_to :purchaser_record
+d
