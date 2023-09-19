@@ -10,12 +10,8 @@
 #   https://dev.mysql.com/doc/refman/5.7/en/password-hashing.html
 #
 default: &default
-  adapter: mysql2
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: root
-  password:
-  socket: /tmp/mysql.sock
 
 development:
   <<: *default
@@ -23,7 +19,7 @@ development:
   username: root
   password:
   host: localhost
-  database: furima_39063_development
+  database: furima-39063_development
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -34,7 +30,7 @@ test:
   username: root
   password:
   host: localhost
-  database: furima_39063_test
+  database: furima-39063_test
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
